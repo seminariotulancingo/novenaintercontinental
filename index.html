@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación Guadalupana - Arquidiócesis de Tulancingo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cinzel (solemne/títulos), Inter (cuerpo) y Cormorant Garamond (citas) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* Verde petróleo / teal oscuro del trazo de la Virgen y tipografía del logo */
+                        petroleo: {
+                            DEFAULT: '#1E4D4F',
+                            dark: '#153A3C',
+                            light: '#2A686B'
+                        },
+                        /* Rosa mexicano / magenta vibrante de la cruz y rosas del logo */
+                        rosa: {
+                            DEFAULT: '#E62886',
+                            dark: '#C41B6F',
+                            light: '#F25CA5'
+                        },
+                        /* Naranja dorado / ámbar de los rayos solares y estrellas del manto */
+                        ambar: {
+                            DEFAULT: '#F3921B',
+                            light: '#F7A631',
+                            dark: '#D4790D'
+                        },
+                        /* Lienzo blanco limpio del logotipo */
+                        lienzo: {
+                            DEFAULT: '#FFFFFF',
+                            suave: '#F8F9FA',
+                            borde: '#E6ECEC'
+                        },
+                        /* Negro carbón de la cruz central */
+                        carbon: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        serifDisplay: ['Cinzel', 'serif'],
+                        serifQuote: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Divisor degradado inspirado en los colores del logo */
+        .logo-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #1E4D4F, #E62886, #F3921B, transparent);
+        }
+        .hero-slide {
+            transition: opacity 0.8s ease-in-out;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-lienzo-suave text-carbon font-sans antialiased selection:bg-rosa selection:text-white">
+
+    <!-- =====================================================================
+         1. BARRA SUPERIOR (NAVBAR) - VERDE PETRÓLEO + ACENTOS ROSA Y ÁMBAR
+    ====================================================================== -->
+    <header class="sticky top-0 z-50 bg-petroleo-dark/95 backdrop-blur-md text-white shadow-lg border-b-2 border-rosa">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logotipo Oficial logo.png -->
+                <a href="#inicio" class="flex items-center space-x-3.5 group">
+                    <div class="w-12 h-12 rounded-full bg-white p-1 shadow-md flex-shrink-0 border-2 border-ambar group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden">
+                        <img src="logo.png" 
+                             onerror="this.src='https://placehold.co/100x100/FFFFFF/1E4D4F?text=Logo'"
+                             alt="Logotipo Animación Guadalupana" 
+                             class="w-full h-full object-contain rounded-full">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serifDisplay font-bold text-sm sm:text-base md:text-lg tracking-wider text-white leading-tight">
+                            Novena Intercontinental
+                        </span>
+                        <span class="text-xs sm:text-sm text-ambar-light font-medium tracking-widest uppercase">
+                            Arquidiócesis de Tulancingo
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Enlaces de navegación Escritorio -->
+                <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
+                    <a href="#inicio" class="text-white hover:text-ambar-light transition-colors py-2 border-b-2 border-transparent hover:border-rosa">Inicio</a>
+                    <a href="#galeria-anios" class="text-white hover:text-ambar-light transition-colors py-2 border-b-2 border-transparent hover:border-rosa">Recorrido Virgen peregrina</a>
+                    <a href="#articulos" class="text-white hover:text-ambar-light transition-colors py-2 border-b-2 border-transparent hover:border-rosa">Artículos</a>
+                    <a href="#registro-juandieguino" class="text-ambar-light hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-ambar font-semibold">Registro</a>
+                    <a href="#contacto" class="px-5 py-2.5 rounded-full bg-rosa hover:bg-rosa-dark text-white font-semibold transition-all shadow-md hover:shadow-rosa/40">Contacto</a>
+                </nav>
+
+                <!-- Botón Menú Móvil -->
+                <button id="mobile-menu-btn" aria-label="Abrir menú" class="md:hidden p-2 rounded-lg text-white hover:bg-petroleo focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-petroleo border-t border-ambar/40 px-4 pt-3 pb-5 space-y-2">
+            <a href="#inicio" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-white hover:bg-petroleo-dark hover:text-ambar-light">Inicio</a>
+            <a href="#galeria-anios" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-white hover:bg-petroleo-dark hover:text-ambar-light">Recorrido Virgen peregrina</a>
+            <a href="#articulos" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-white hover:bg-petroleo-dark hover:text-ambar-light">Artículos</a>
+            <a href="#registro-juandieguino" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-ambar-light hover:bg-petroleo-dark">Registro</a>
+            <a href="#contacto" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold bg-rosa text-white text-center mt-2">Contacto</a>
+        </div>
+    </header>
+
+    <!-- =====================================================================
+         2. CARRUSEL PRINCIPAL DE FOTOS (HERO CAROUSEL)
+    ====================================================================== -->
+    <section id="inicio" class="relative w-full h-[520px] sm:h-[600px] lg:h-[650px] overflow-hidden bg-petroleo-dark">
+        <div id="hero-slides-container" class="relative w-full h-full">
+            <!-- Diapositiva 1 -->
+            <div class="hero-slide absolute inset-0 opacity-100 z-10" data-index="0">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80" 
+                     onerror="this.src='https://placehold.co/1920x800/1E4D4F/FFFFFF?text=Novena+Intercontinental+Guadalupana'"
+                     alt="Arquitectura religiosa en México" class="w-full h-full object-cover object-center">
+                <div class="absolute inset-0 bg-gradient-to-t from-petroleo-dark via-petroleo-dark/65 to-carbon/35"></div>
+                <div class="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-8">
+                    <div class="max-w-3xl mx-auto space-y-5">
+                        <span class="inline-block px-4 py-1.5 rounded-full bg-white text-petroleo-dark text-xs sm:text-sm font-bold tracking-widest uppercase border-2 border-ambar shadow">
+                            Novena Intercontinental Guadalupana • 500 Años
+                        </span>
+                        <h1 class="font-serifDisplay text-3xl sm:text-5xl lg:text-6xl font-bold text-white drop-shadow-md leading-tight">
+                            Santa María de Guadalupe, Madre del Redentor
+                        </h1>
+                        <p class="text-white/95 text-base sm:text-lg lg:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                            Camino pastoral de fe, esperanza y comunión eclesial en todas las parroquias de la Arquidiócesis de Tulancingo rumbo al Jubileo de los 500 Años.
+                        </p>
+                        <div class="pt-3">
+                            <button onclick="openHeroModal(0)" class="px-8 py-3.5 rounded-full bg-rosa hover:bg-rosa-dark text-white font-semibold text-sm sm:text-base tracking-wide shadow-xl hover:shadow-rosa/40 border border-white/20 transition-all transform hover:-translate-y-0.5">
+                                Ver más <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diapositiva 2 -->
+            <div class="hero-slide absolute inset-0 opacity-0 z-0" data-index="1">
+                <img src="https://images.unsplash.com/photo-1548625149-fc4a29cf7092?auto=format&fit=crop&w=1920&q=80" 
+                     onerror="this.src='https://placehold.co/1920x800/153A3C/F7A631?text=Peregrinacion+Arquidiocesana'"
+                     alt="Veladoras y devoción mariana" class="w-full h-full object-cover object-center">
+                <div class="absolute inset-0 bg-gradient-to-t from-petroleo-dark via-petroleo/70 to-carbon/35"></div>
+                <div class="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-8">
+                    <div class="max-w-3xl mx-auto space-y-5">
+                        <span class="inline-block px-4 py-1.5 rounded-full bg-ambar text-carbon text-xs sm:text-sm font-bold tracking-widest uppercase shadow">
+                            Formación y Misión
+                        </span>
+                        <h2 class="font-serifDisplay text-3xl sm:text-5xl lg:text-6xl font-bold text-white drop-shadow-md leading-tight">
+                            Peregrinos de Esperanza y Amor
+                        </h2>
+                        <p class="text-white/95 text-base sm:text-lg lg:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                            Recorrido de la Imagen Peregrina por nuestras foranías en Hidalgo, Puebla y Veracruz, fortaleciendo la unidad de las familias.
+                        </p>
+                        <div class="pt-3">
+                            <button onclick="openHeroModal(1)" class="px-8 py-3.5 rounded-full bg-rosa hover:bg-rosa-dark text-white font-semibold text-sm sm:text-base tracking-wide shadow-xl border border-white/20 transition-all transform hover:-translate-y-0.5">
+                                Ver más <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diapositiva 3 -->
+            <div class="hero-slide absolute inset-0 opacity-0 z-0" data-index="2">
+                <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1920&q=80" 
+                     onerror="this.src='https://placehold.co/1920x800/1E4D4F/E62886?text=Rosas+del+Tepeyac'"
+                     alt="Rosas de Castilla símbolo guadalupano" class="w-full h-full object-cover object-center">
+                <div class="absolute inset-0 bg-gradient-to-t from-petroleo-dark via-carbon/55 to-carbon/30"></div>
+                <div class="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-8">
+                    <div class="max-w-3xl mx-auto space-y-5">
+                        <span class="inline-block px-4 py-1.5 rounded-full bg-rosa text-white text-xs sm:text-sm font-bold tracking-widest uppercase shadow">
+                            Espiritualidad Guadalupana
+                        </span>
+                        <h2 class="font-serifDisplay text-3xl sm:text-5xl lg:text-6xl font-bold text-white drop-shadow-md leading-tight">
+                            La Casita Sagrada en Cada Hogar
+                        </h2>
+                        <p class="text-white/95 text-base sm:text-lg lg:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                            Edificando un templo vivo de caridad, escucha y consuelo bajo el amparo maternal de Nuestra Señora de Guadalupe.
+                        </p>
+                        <div class="pt-3">
+                            <button onclick="openHeroModal(2)" class="px-8 py-3.5 rounded-full bg-rosa hover:bg-rosa-dark text-white font-semibold text-sm sm:text-base tracking-wide shadow-xl border border-white/20 transition-all transform hover:-translate-y-0.5">
+                                Ver más <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles Anterior / Siguiente del Hero -->
+        <button id="hero-prev" aria-label="Diapositiva anterior" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-petroleo-dark/75 hover:bg-rosa text-white border border-ambar/70 flex items-center justify-center transition-all backdrop-blur-sm">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="hero-next" aria-label="Siguiente diapositiva" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-petroleo-dark/75 hover:bg-rosa text-white border border-ambar/70 flex items-center justify-center transition-all backdrop-blur-sm">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Indicadores inferiores -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
+            <button class="hero-dot w-7 h-3 rounded-full bg-rosa transition-all" data-slide="0" aria-label="Ir a diapositiva 1"></button>
+            <button class="hero-dot w-3 h-3 rounded-full bg-white/70 hover:bg-ambar transition-all" data-slide="1" aria-label="Ir a diapositiva 2"></button>
+            <button class="hero-dot w-3 h-3 rounded-full bg-white/70 hover:bg-ambar transition-all" data-slide="2" aria-label="Ir a diapositiva 3"></button>
+        </div>
+    </section>
+
+    <!-- Cita Litúrgica Introductoria sobre lienzo blanco puro -->
+    <div class="bg-white border-b border-lienzo-borde py-9 px-4 shadow-sm">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center space-x-2 text-rosa mb-2">
+                <i class="fas fa-star text-xs text-ambar"></i>
+                <i class="fas fa-cross text-sm"></i>
+                <i class="fas fa-star text-xs text-ambar"></i>
+            </div>
+            <p class="font-serifQuote italic text-xl sm:text-2xl text-petroleo-dark font-semibold">
+                "¿Acaso no estoy aquí yo que soy tu madre? ¿No estás bajo mi sombra y resguardo? ¿No soy yo la fuente de tu alegría?"
+            </p>
+            <p class="text-xs sm:text-sm uppercase tracking-widest text-rosa font-bold mt-2">
+                — Nican Mopohua
+            </p>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         3. ACORDEÓN VERTICAL ANIDADO (AÑOS 2024, 2025, 2026 Y MESES ENE-DIC)
+    ====================================================================== -->
+    <section id="galeria-anios" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="text-rosa font-bold tracking-widest uppercase text-xs sm:text-sm">Memoria Fotográfica</span>
+            <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold text-petroleo-dark mt-2">
+                Recorrido Virgen Peregrina
+            </h2>
+            <div class="logo-divider w-56 mx-auto my-4 rounded-full"></div>
+            <p class="text-stone-600 max-w-2xl mx-auto text-sm sm:text-base">
+                Explora por año y mes las visitas de la Imagen Peregrina y las actividades pastorales en las distintas parroquias de nuestra Arquidiócesis.
+            </p>
+        </div>
+
+        <!-- Contenedor dinámico del Acordeón Anidado -->
+        <div id="nested-accordion-root" class="space-y-5">
+            <!-- Generado dinámicamente por JavaScript (2026 -> Noviembre abierto por defecto) -->
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         4. SECCIÓN DE ARTÍCULOS GUADALUPANOS
+    ====================================================================== -->
+    <section id="articulos" class="py-16 sm:py-20 bg-white border-t border-lienzo-borde">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-rosa font-bold tracking-widest uppercase text-xs sm:text-sm">Formación y Catequesis</span>
+                <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold text-petroleo-dark mt-2">
+                    Artículos Guadalupanos
+                </h2>
+                <div class="logo-divider w-56 mx-auto my-4 rounded-full"></div>
+                <p class="text-stone-600 max-w-2xl mx-auto text-sm sm:text-base">
+                    Reflexiones históricas, iconográficas y espirituales sobre el Acontecimiento Guadalupano y nuestra misión diocesana.
+                </p>
+            </div>
+
+            <!-- Cuadrícula de Artículos Principales -->
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
+                <!-- Artículo 1 -->
+                <article class="bg-lienzo-suave rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-lienzo-borde flex flex-col group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80" 
+                             onerror="this.src='https://placehold.co/600x400/1E4D4F/FFFFFF?text=Nican+Mopohua'"
+                             alt="Nican Mopohua" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-petroleo text-white text-xs font-semibold px-3 py-1 rounded-full border border-ambar/50">
+                            Espiritualidad
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-xs text-stone-500 mb-2 flex items-center">
+                            <i class="far fa-calendar-alt mr-1.5 text-ambar"></i> Noviembre 2026
+                        </div>
+                        <h3 class="font-serifDisplay font-bold text-lg text-petroleo-dark mb-2.5 group-hover:text-rosa transition-colors">
+                            El Nican Mopohua y su mensaje de esperanza
+                        </h3>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-1">
+                            Un acercamiento al relato en lengua náhuatl que recoge el diálogo tierno entre Santa María de Guadalupe y San Juan Diego.
+                        </p>
+                        <button onclick="openArticleModal(0)" class="inline-flex items-center text-sm font-bold text-rosa hover:text-petroleo-dark transition-colors mt-auto">
+                            Leer reflexión completa <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Artículo 2 -->
+                <article class="bg-lienzo-suave rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-lienzo-borde flex flex-col group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&w=800&q=80" 
+                             onerror="this.src='https://placehold.co/600x400/E62886/FFFFFF?text=Tilma+Sagrada'"
+                             alt="Simbolismo de la Tilma" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-rosa text-white text-xs font-semibold px-3 py-1 rounded-full">
+                            Iconografía
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-xs text-stone-500 mb-2 flex items-center">
+                            <i class="far fa-calendar-alt mr-1.5 text-ambar"></i> Octubre 2026
+                        </div>
+                        <h3 class="font-serifDisplay font-bold text-lg text-petroleo-dark mb-2.5 group-hover:text-rosa transition-colors">
+                            Simbolismo de la Tilma de San Juan Diego
+                        </h3>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-1">
+                            Descubre el significado de las 46 estrellas del manto, el Nahui Ollin y los signos cósmicos estampados en el ayate.
+                        </p>
+                        <button onclick="openArticleModal(1)" class="inline-flex items-center text-sm font-bold text-rosa hover:text-petroleo-dark transition-colors mt-auto">
+                            Leer reflexión completa <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Artículo 3 -->
+                <article class="bg-lienzo-suave rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-lienzo-borde flex flex-col group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=800&q=80" 
+                             onerror="this.src='https://placehold.co/600x400/F3921B/1A1A1A?text=Jubileo+2031'"
+                             alt="Jubileo Guadalupano 2031" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-ambar text-carbon text-xs font-bold px-3 py-1 rounded-full">
+                            Novena Intercontinental
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-xs text-stone-500 mb-2 flex items-center">
+                            <i class="far fa-calendar-alt mr-1.5 text-ambar"></i> Septiembre 2026
+                        </div>
+                        <h3 class="font-serifDisplay font-bold text-lg text-petroleo-dark mb-2.5 group-hover:text-rosa transition-colors">
+                            Preparación hacia el Jubileo Guadalupano 2031
+                        </h3>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-1">
+                            Etapas pastorales de la Novena Intercontinental Guadalupana y los compromisos misioneros de nuestra Iglesia particular.
+                        </p>
+                        <button onclick="openArticleModal(2)" class="inline-flex items-center text-sm font-bold text-rosa hover:text-petroleo-dark transition-colors mt-auto">
+                            Leer reflexión completa <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Artículo 4 -->
+                <article class="bg-lienzo-suave rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-lienzo-borde flex flex-col group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1585468274952-66591eb14165?auto=format&fit=crop&w=800&q=80" 
+                             onerror="this.src='https://placehold.co/600x400/1E4D4F/FFFFFF?text=Tulancingo+Guadalupano'"
+                             alt="Devoción en Tulancingo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-petroleo text-white text-xs font-semibold px-3 py-1 rounded-full border border-ambar/50">
+                            Historia Local
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-xs text-stone-500 mb-2 flex items-center">
+                            <i class="far fa-calendar-alt mr-1.5 text-ambar"></i> Agosto 2026
+                        </div>
+                        <h3 class="font-serifDisplay font-bold text-lg text-petroleo-dark mb-2.5 group-hover:text-rosa transition-colors">
+                            Devoción guadalupana en el Valle de Tulancingo
+                        </h3>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-1">
+                            Historia de nuestras peregrinaciones tradicionales desde la Sierra y el Valle hacia el Tepeyac y santuarios locales.
+                        </p>
+                        <button onclick="openArticleModal(3)" class="inline-flex items-center text-sm font-bold text-rosa hover:text-petroleo-dark transition-colors mt-auto">
+                            Leer reflexión completa <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Panel Desplegable de Recursos Adicionales (Oculto inicialmente) -->
+            <div id="extra-resources-panel" class="hidden mt-10 bg-lienzo-suave rounded-2xl p-6 sm:p-8 border-2 border-petroleo/30 shadow-lg transition-all">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-lienzo-borde pb-4 mb-6">
+                    <div>
+                        <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold text-petroleo-dark">
+                            Subsidios — Novena Intercontinental Arquidiócesis de Tulancingo
+                        </h3>
+                        <p class="text-sm text-stone-600 mt-1">Materiales de apoyo para parroquias, grupos juveniles y familias.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <!-- Recurso 1 -->
+                    <div class="p-5 rounded-xl bg-white border border-lienzo-borde shadow-sm flex items-start space-x-4">
+                        <div class="w-11 h-11 rounded-lg bg-rosa text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                            <i class="fas fa-book-open text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-petroleo-dark text-sm">Guía para el Santo Rosario Guadalupano</h4>
+                            <p class="text-xs text-stone-600 mt-1">Meditaciones con fragmentos del Nican Mopohua para rezar en familia durante los 46 días.</p>
+                            <button onclick="showToast('Preparando descarga: Guía del Santo Rosario Guadalupano (PDF)')" class="mt-3 inline-flex items-center text-xs font-bold text-rosa hover:text-petroleo">
+                                <i class="fas fa-download mr-1.5"></i> Obtener subsidio
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Recurso 2 -->
+                    <div class="p-5 rounded-xl bg-white border border-lienzo-borde shadow-sm flex items-start space-x-4">
+                        <div class="w-11 h-11 rounded-lg bg-petroleo text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                            <i class="fas fa-music text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-petroleo-dark text-sm">Cantoral Mariano y Mañanitas Tradicionales</h4>
+                            <p class="text-xs text-stone-600 mt-1">Letras y acordes para celebraciones litúrgicas, procesiones y serenatas parroquiales.</p>
+                            <button onclick="showToast('Preparando descarga: Cantoral Guadalupano Arquidiocesano')" class="mt-3 inline-flex items-center text-xs font-bold text-rosa hover:text-petroleo">
+                                <i class="fas fa-download mr-1.5"></i> Obtener cantoral
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Recurso 3 -->
+                    <div class="p-5 rounded-xl bg-white border border-lienzo-borde shadow-sm flex items-start space-x-4">
+                        <div class="w-11 h-11 rounded-lg bg-ambar text-carbon flex items-center justify-center flex-shrink-0 shadow-sm">
+                            <i class="fas fa-scroll text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-petroleo-dark text-sm">Catequesis Infantil Guadalupana</h4>
+                            <p class="text-xs text-stone-600 mt-1">Actividades ilustradas y dinámicas sobre San Juan Diego para niños de catecismo.</p>
+                            <button onclick="showToast('Preparando descarga: Cuadernillo de Catequesis Infantil')" class="mt-3 inline-flex items-center text-xs font-bold text-rosa hover:text-petroleo">
+                                <i class="fas fa-download mr-1.5"></i> Obtener cuadernillo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Centrado 'Ver más recursos' en Rosa Mexicano del logo -->
+            <div class="mt-12 text-center">
+                <button id="toggle-resources-btn" onclick="toggleResources()" class="inline-flex items-center px-8 py-4 rounded-full bg-rosa hover:bg-rosa-dark text-white font-semibold text-base shadow-lg hover:shadow-rosa/40 border-2 border-ambar/70 transition-all transform hover:-translate-y-0.5">
+                    <i class="fas fa-folder-open mr-2.5 text-amber-200"></i>
+                    <span id="toggle-resources-text">Ver más recursos</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         4.5 REGISTRO Y CERTIFICADO DE JUAN DIEGUINO (GOOGLE SHEETS + CANVAS)
+    ====================================================================== -->
+    <section id="registro-juandieguino" class="py-16 sm:py-24 bg-lienzo-suave border-t border-lienzo-borde relative overflow-hidden">
+        <div class="absolute top-0 inset-x-0 logo-divider opacity-60"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Encabezado de Sección -->
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center px-4 py-1 rounded-full bg-rosa/10 text-rosa font-bold tracking-widest uppercase text-xs sm:text-sm border border-rosa/20">
+                    <i class="fas fa-award mr-2 text-ambar"></i> Comisión Diocesana
+                </span>
+                <h2 class="font-serifDisplay text-3xl sm:text-4xl lg:text-5xl font-bold text-petroleo-dark mt-3 leading-tight">
+                    Regístrate y recibe tu certificado de Juan Dieguino
+                </h2>
+                <div class="logo-divider w-64 mx-auto my-4 rounded-full"></div>
+                <p class="text-stone-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+                    Inscríbete como miembro activo de la <strong class="text-petroleo-dark">Comisión de Animación Guadalupana de la Arquidiócesis de Tulancingo</strong>. Tus datos se registrarán en nuestra bitácora diocesana y recibirás al instante tu constancia oficial personalizada lista para descargar e imprimir.
+                </p>
+            </div>
+
+            <!-- Contenedor Principal: Formulario / Vista Previa del Certificado -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Columna Izquierda: Formulario de Registro -->
+                <div id="jd-form-card" class="lg:col-span-5 bg-white rounded-2xl shadow-xl border-2 border-petroleo/20 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-6 border-b border-lienzo-borde">
+                        <div class="w-11 h-11 rounded-full bg-petroleo text-white flex items-center justify-center flex-shrink-0 border-2 border-ambar">
+                            <i class="fas fa-user-pen text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serifDisplay font-bold text-lg text-petroleo-dark">Ficha de Inscripción</h3>
+                            <p class="text-xs text-stone-500">Todos los campos son obligatorios</p>
+                        </div>
+                    </div>
+
+                    <form id="juandieguino-form" class="space-y-5">
+                        <!-- Nombre Completo -->
+                        <div>
+                            <label for="jd-nombre" class="block text-sm font-semibold text-petroleo-dark mb-1.5">
+                                Nombre completo <span class="text-rosa">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-petroleo/60">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <input type="text" id="jd-nombre" name="nombre" required
+                                       placeholder="Ej. María Guadalupe Hernández Pérez"
+                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-300 focus:border-rosa focus:ring-2 focus:ring-rosa/20 outline-none text-sm text-carbon transition-all">
+                            </div>
+                            <p class="text-[11px] text-stone-500 mt-1">Se imprimirá exactamente como lo escribas en el certificado.</p>
+                        </div>
+
+                        <!-- Parroquia o Decanato -->
+                        <div>
+                            <label for="jd-parroquia" class="block text-sm font-semibold text-petroleo-dark mb-1.5">
+                                Parroquia / Decanato <span class="text-rosa">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-petroleo/60">
+                                    <i class="fas fa-church"></i>
+                                </span>
+                                <input type="text" id="jd-parroquia" name="parroquia" list="parroquias-sugeridas" required
+                                       placeholder="Selecciona o escribe tu parroquia..."
+                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-300 focus:border-rosa focus:ring-2 focus:ring-rosa/20 outline-none text-sm text-carbon transition-all">
+                                <datalist id="parroquias-sugeridas">
+                                    
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <!-- Correo Electrónico -->
+                        <div>
+                            <label for="jd-correo" class="block text-sm font-semibold text-petroleo-dark mb-1.5">
+                                Correo electrónico <span class="text-rosa">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-petroleo/60">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <input type="email" id="jd-correo" name="correo" required
+                                       placeholder="correo@ejemplo.com"
+                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-300 focus:border-rosa focus:ring-2 focus:ring-rosa/20 outline-none text-sm text-carbon transition-all">
+                            </div>
+                        </div>
+
+                        <!-- Teléfono / WhatsApp -->
+                        <div>
+                            <label for="jd-telefono" class="block text-sm font-semibold text-petroleo-dark mb-1.5">
+                                Teléfono <span class="text-rosa">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-petroleo/60">
+                                    <i class="fab fa-whatsapp text-base"></i>
+                                </span>
+                                <input type="tel" id="jd-telefono" name="telefono" required
+                                       placeholder="Ej. 775 123 4567"
+                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-300 focus:border-rosa focus:ring-2 focus:ring-rosa/20 outline-none text-sm text-carbon transition-all">
+                            </div>
+                        </div>
+
+                        <!-- Botón Principal Rosa Mexicano -->
+                        <div class="pt-2">
+                            <button type="submit" id="jd-submit-btn"
+                                    class="w-full py-4 px-6 rounded-full bg-rosa hover:bg-rosa-dark text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-rosa/40 border-2 border-ambar/70 transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                                <i class="fas fa-certificate text-amber-200"></i>
+                                <span>Registrarme y Generar Certificado</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Columna Derecha: Vista Previa del Certificado Generado -->
+                <div class="lg:col-span-7 flex flex-col">
+                    <!-- Banner de estado de sincronización con Google Sheets -->
+                    <div id="jd-status-banner" class="hidden mb-4 p-4 rounded-xl border flex items-start space-x-3 shadow-sm">
+                        <i id="jd-status-icon" class="fas fa-check-circle text-lg mt-0.5"></i>
+                        <div class="text-sm">
+                            <p id="jd-status-title" class="font-bold"></p>
+                            <p id="jd-status-desc" class="text-xs mt-0.5 opacity-90"></p>
+                        </div>
+                    </div>
+
+                    <!-- Marco del Certificado -->
+                    <div class="bg-white rounded-2xl shadow-xl border-2 border-petroleo/20 p-4 sm:p-6 flex flex-col items-center justify-center">
+                        <div class="w-full flex items-center justify-between pb-3 mb-4 border-b border-lienzo-borde">
+                            <span class="text-xs font-bold uppercase tracking-wider text-petroleo-dark flex items-center">
+                                <i class="fas fa-eye text-rosa mr-2"></i> Vista Previa Oficial (1600 × 1130 px)
+                            </span>
+                            <span id="jd-folio-badge" class="text-xs font-semibold px-3 py-1 rounded-full bg-ambar/20 text-petroleo-dark border border-ambar/50">
+                              
+                            </span>
+                        </div>
+
+                        <!-- Canvas de Alta Resolución (1600x1130) + Imagen Renderizada Responsiva -->
+                        <div id="certificate-display-wrapper" class="w-full rounded-xl overflow-hidden shadow-md border border-stone-200 bg-[#FCFBF7]">
+                            <canvas id="certificate-canvas" width="1600" height="1130" class="w-full h-auto block"></canvas>
+                            <img id="certificate-preview-img" 
+                                 src="" 
+                                 alt="Vista previa del Certificado de Juan Dieguino" 
+                                 class="w-full h-auto hidden">
+                        </div>
+
+                        <!-- Controles de Descarga y Nuevo Registro -->
+                        <div id="jd-action-buttons" class="w-full mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                            <button type="button" onclick="downloadCertificatePNG()"
+                                    class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-petroleo hover:bg-petroleo-dark text-white font-semibold text-sm shadow-md hover:shadow-lg border border-ambar transition-all flex items-center justify-center space-x-2">
+                                <i class="fas fa-download text-ambar-light"></i>
+                                <span>Descargar Certificado PNG</span>
+                            </button>
+
+                            <button type="button" onclick="resetJuanDieguinoForm()"
+                                    class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white hover:bg-lienzo-suave text-petroleo-dark font-semibold text-sm border-2 border-petroleo/30 hover:border-rosa transition-all flex items-center justify-center space-x-2">
+                                <i class="fas fa-user-plus text-rosa"></i>
+                                <span>Registrar a otra persona</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         5. PIE DE PÁGINA (FOOTER) - VERDE PETRÓLEO + BORDE ROSA + ACENTOS ÁMBAR
+    ====================================================================== -->
+    <footer id="contacto" class="bg-petroleo-dark text-stone-100 border-t-4 border-rosa">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Columna 1: Identidad -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center border-2 border-ambar">
+                            <i class="fas fa-cross text-rosa text-base"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serifDisplay font-bold text-white text-base leading-tight">
+                                Novena intercontinental
+                            </h3>
+                            <p class="text-xs text-ambar-light uppercase tracking-wider font-medium">Arquidiócesis de Tulancingo</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-stone-300 leading-relaxed">
+                        texto.
+                    </p>
+                </div>
+
+                <!-- Columna 2: Dirección y Sede -->
+                <div class="space-y-3">
+                    <h4 class="font-serifDisplay font-semibold text-ambar-light text-base uppercase tracking-wider">
+                        texto
+                    </h4>
+                    <ul class="space-y-2.5 text-sm text-stone-200">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-church text-rosa mt-1"></i>
+                            <span>Catedral Metropolitana de Tulancingo<br>Plaza de la Constitución s/n, Col. Centro, C.P. 43600, Tulancingo de Bravo, Hidalgo.</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="far fa-clock text-ambar"></i>
+                            <span>Lunes a Viernes: 9:30 a 14:30 hrs.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Contacto -->
+                <div class="space-y-3">
+                    <h4 class="font-serifDisplay font-semibold text-ambar-light text-base uppercase tracking-wider">
+                        Contacto
+                    </h4>
+                    <ul class="space-y-2.5 text-sm text-stone-200">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone-alt text-rosa"></i>
+                            <span>numero de telefono</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-ambar"></i>
+                            <span>correo</span>
+                        </li>
+                        <li class="pt-2">
+                            <a href="#galeria-anios" class="inline-block text-xs uppercase tracking-wider text-ambar-light hover:text-white hover:underline">
+                                Consultar calendario
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Redes y Comunión -->
+                <div class="space-y-4">
+                    <h4 class="font-serifDisplay font-semibold text-ambar-light text-base uppercase tracking-wider">
+                        Comunión Eclesial
+                    </h4>
+                    <p class="text-sm text-stone-300">
+                        Sigue las transmisiones de las Misas, rosarios y peregrinaciones arquidiocesanas:
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="javascript:void(0)" onclick="showToast('Abriendo página oficial de Facebook Arquidiocesana')" aria-label="Facebook" class="w-10 h-10 rounded-full bg-petroleo hover:bg-rosa text-white flex items-center justify-center transition-colors border border-ambar/50">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="javascript:void(0)" onclick="showToast('Abriendo canal de YouTube Pastoral')" aria-label="YouTube" class="w-10 h-10 rounded-full bg-petroleo hover:bg-rosa text-white flex items-center justify-center transition-colors border border-ambar/50">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="javascript:void(0)" onclick="showToast('Abriendo perfil oficial de Instagram')" aria-label="Instagram" class="w-10 h-10 rounded-full bg-petroleo hover:bg-rosa text-white flex items-center justify-center transition-colors border border-ambar/50">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="logo-divider w-full my-8 opacity-75"></div>
+
+            <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-stone-300 space-y-2 sm:space-y-0 text-center sm:text-left">
+                <p>© 2026  Todos los derechos reservados.</p>
+                <p class="font-serifQuote italic text-base text-ambar-light font-medium">"Santa María de Guadalupe, Madre del Redentor — Camino a los 500 años"</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         MODAL PARA LECTURA DE ARTÍCULOS Y DETALLES DEL HERO
+    ====================================================================== -->
+    <div id="content-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-carbon/80 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[88vh] overflow-hidden shadow-2xl border-2 border-rosa flex flex-col">
+            <div class="bg-petroleo-dark px-6 py-4 flex justify-between items-center border-b-2 border-ambar">
+                <span id="modal-badge" class="text-xs font-bold uppercase tracking-widest text-ambar-light">
+                    Reflexión Guadalupana
+                </span>
+                <button onclick="closeModal()" aria-label="Cerrar ventana" class="text-white hover:text-rosa w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-4">
+                <img id="modal-img" src="" alt="" class="w-full h-56 object-cover rounded-xl shadow-sm border border-lienzo-borde">
+                <h3 id="modal-title" class="font-serifDisplay text-2xl font-bold text-petroleo-dark leading-snug"></h3>
+                <div id="modal-body" class="text-stone-700 text-sm sm:text-base leading-relaxed space-y-4"></div>
+            </div>
+            <div class="bg-lienzo-suave px-6 py-3.5 border-t border-lienzo-borde flex justify-end">
+                <button onclick="closeModal()" class="px-6 py-2 rounded-full bg-rosa hover:bg-rosa-dark text-white text-sm font-semibold transition-colors">
+                    Cerrar lectura
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación Toast Flotante -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden items-center space-x-3 bg-petroleo-dark text-white px-5 py-3.5 rounded-xl shadow-2xl border-2 border-rosa transition-all">
+        <i class="fas fa-check-circle text-ambar-light text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium"></span>
+    </div>
+
+    <!-- =====================================================================
+         JAVASCRIPT: LÓGICA DE CARRUSELES, ACORDEÓN ANIDADO Y CERTIFICADO
+    ====================================================================== -->
+    <script>
+        // -------------------------------------------------------------------
+        // 1. MENÚ MÓVIL
+        // -------------------------------------------------------------------
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // -------------------------------------------------------------------
+        // 2. CARRUSEL PRINCIPAL (HERO CAROUSEL)
+        // -------------------------------------------------------------------
+        let currentHeroSlide = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroDots = document.querySelectorAll('.hero-dot');
+        let heroInterval;
+
+        function showHeroSlide(index) {
+            currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+            heroSlides.forEach((slide, i) => {
+                if (i === currentHeroSlide) {
+                    slide.classList.remove('opacity-0', 'z-0');
+                    slide.classList.add('opacity-100', 'z-10');
+                } else {
+                    slide.classList.remove('opacity-100', 'z-10');
+                    slide.classList.add('opacity-0', 'z-0');
+                }
+            });
+            heroDots.forEach((dot, i) => {
+                if (i === currentHeroSlide) {
+                    dot.classList.remove('bg-white/70', 'w-3');
+                    dot.classList.add('bg-rosa', 'w-7');
+                } else {
+                    dot.classList.remove('bg-rosa', 'w-7');
+                    dot.classList.add('bg-white/70', 'w-3');
+                }
+            });
+        }
+
+        function startHeroAutoPlay() {
+            heroInterval = setInterval(() => showHeroSlide(currentHeroSlide + 1), 6500);
+        }
+
+        function resetHeroAutoPlay() {
+            clearInterval(heroInterval);
+            startHeroAutoPlay();
+        }
+
+        document.getElementById('hero-prev').addEventListener('click', () => {
+            showHeroSlide(currentHeroSlide - 1);
+            resetHeroAutoPlay();
+        });
+        document.getElementById('hero-next').addEventListener('click', () => {
+            showHeroSlide(currentHeroSlide + 1);
+            resetHeroAutoPlay();
+        });
+        heroDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showHeroSlide(parseInt(dot.dataset.slide));
+                resetHeroAutoPlay();
+            });
+        });
+        startHeroAutoPlay();
+
+        // -------------------------------------------------------------------
+        // 3. DATOS DEL ACORDEÓN ANIDADO (2024, 2025, 2026 - ENE A DIC)
+        // -------------------------------------------------------------------
+        const monthsList = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        const parroquiasArchidiocesis = [
+            "Parroquia de Nuestra Señora de Guadalupe, Tulancingo",
+            "Santuario de Nuestra Señora de los Ángeles, Tulancingo",
+           
+        ];
+
+        const samplePhotosPool = [
+            {
+                url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80",
+                caption: "Recepción solemne de la Imagen Peregrina de Santa María de Guadalupe en el atrio parroquial."
+            },
+            
+        
+        ];
+
+        function getMonthData(year, monthIndex) {
+            const monthName = monthsList[monthIndex];
+            if (year === 2026 && monthIndex === 10) {
+                return {
+                    parish: "Parroquia de Nuestra Señora de Guadalupe (La Villita), Tulancingo, Hgo.",
+                    forania: "Foranía Tulancingo Centro • Novena Intercontinental 2026",
+                    photos: [
+                        {
+                            url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1100&q=80",
+                            caption: "Noviembre 2026: Solemne procesión con estandartes parroquiales hacia el Santuario de La Villita en Tulancingo."
+                        },
+                        
+                    ]
+                };
+            }
+
+            const parishIndex = (year + monthIndex * 3) % parroquiasArchidiocesis.length;
+            const p1 = samplePhotosPool[(monthIndex + year) % samplePhotosPool.length];
+            const p2 = samplePhotosPool[(monthIndex + year + 1) % samplePhotosPool.length];
+            const p3 = samplePhotosPool[(monthIndex + year + 2) % samplePhotosPool.length];
+
+            return {
+                parish: parroquiasArchidiocesis[parishIndex],
+                forania: `Misión Guadalupana • ${monthName} ${year}`,
+                photos: [
+                    { url: p1.url, caption: `${monthName} ${year}: ${p1.caption}` },
+                    { url: p2.url, caption: `${monthName} ${year}: ${p2.caption}` },
+                    { url: p3.url, caption: `${monthName} ${year}: ${p3.caption}` }
+                ]
+            };
+        }
+
+        const monthCarouselState = {};
+
+        function renderNestedAccordion() {
+            const root = document.getElementById('nested-accordion-root');
+            const years = [2024, 2025, 2026];
+            let html = '';
+
+            years.forEach(year => {
+                const isYearOpen = (year === 2026);
+                const yearBadge = year === 2026 
+                    ? '<span class="ml-3 px-3 py-0.5 text-xs rounded-full bg-ambar text-carbon font-bold shadow-sm">Año en curso</span>' 
+                    : '';
+
+                html += `
+                <div class="rounded-2xl overflow-hidden shadow-md border-2 ${isYearOpen ? 'border-petroleo' : 'border-lienzo-borde'} bg-white transition-all">
+                    <button type="button" 
+                            onclick="toggleYearAccordion(${year})" 
+                            aria-expanded="${isYearOpen}"
+                            id="year-btn-${year}"
+                            class="w-full px-6 py-5 flex items-center justify-between text-left transition-colors ${isYearOpen ? 'bg-petroleo text-white' : 'bg-white hover:bg-lienzo-suave text-petroleo-dark'}">
+                        <div class="flex items-center">
+                            <span class="w-9 h-9 rounded-full ${isYearOpen ? 'bg-rosa text-white' : 'bg-petroleo/10 text-petroleo'} flex items-center justify-center mr-3.5 font-bold">
+                                <i class="fas fa-calendar-check"></i>
+                            </span>
+                            <span class="font-serifDisplay text-2xl sm:text-3xl font-bold tracking-wide">${year}</span>
+                            ${yearBadge}
+                        </div>
+                        <i id="year-icon-${year}" class="fas fa-chevron-down text-lg transition-transform duration-300 ${isYearOpen ? 'rotate-180 text-ambar-light' : 'text-petroleo'}"></i>
+                    </button>
+
+                    <div id="year-panel-${year}" class="${isYearOpen ? 'block' : 'hidden'} p-3 sm:p-6 bg-lienzo-suave space-y-2.5">
+                `;
+
+                monthsList.forEach((monthName, mIdx) => {
+                    const isMonthOpen = (year === 2026 && mIdx === 10);
+                    const key = `${year}-${mIdx}`;
+                    monthCarouselState[key] = 0;
+                    const data = getMonthData(year, mIdx);
+
+                    html += `
+                        <div class="rounded-xl border ${isMonthOpen ? 'border-rosa bg-white shadow-sm' : 'border-lienzo-borde bg-white'} overflow-hidden">
+                            <button type="button"
+                                    onclick="toggleMonthAccordion(${year}, ${mIdx})"
+                                    aria-expanded="${isMonthOpen}"
+                                    id="month-btn-${key}"
+                                    class="w-full px-5 py-3.5 flex items-center justify-between text-left transition-colors ${isMonthOpen ? 'bg-rosa text-white' : 'hover:bg-lienzo-suave text-petroleo-dark'}">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-2.5 h-2.5 rounded-full ${isMonthOpen ? 'bg-ambar-light' : 'bg-rosa'}"></span>
+                                    <span class="font-serifDisplay font-semibold text-base sm:text-lg">${monthName}</span>
+                                    <span class="hidden sm:inline-block text-xs ${isMonthOpen ? 'text-white/90' : 'text-stone-500'} truncate max-w-xs md:max-w-md">
+                                        — ${data.parish}
+                                    </span>
+                                </div>
+                                <i id="month-icon-${key}" class="fas fa-chevron-down text-sm transition-transform duration-300 ${isMonthOpen ? 'rotate-180 text-white' : 'text-petroleo'}"></i>
+                            </button>
+
+                            <div id="month-panel-${key}" class="${isMonthOpen ? 'block' : 'hidden'} p-4 sm:p-6 bg-white border-t border-lienzo-borde">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-ambar/40">
+                                    <div class="flex items-start sm:items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-full bg-petroleo/10 text-petroleo flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-0 border border-petroleo/20">
+                                            <i class="fas fa-place-of-worship text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs uppercase tracking-wider text-rosa font-bold">${data.forania}</p>
+                                            <h4 class="font-serifDisplay font-bold text-lg sm:text-xl text-petroleo-dark">
+                                                ${data.parish}
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <span class="inline-flex items-center self-start sm:self-center px-3 py-1 rounded-full text-xs font-semibold bg-lienzo-suave text-petroleo-dark border border-lienzo-borde">
+                                        <i class="fas fa-camera text-ambar mr-1.5"></i> ${data.photos.length} fotografías
+                                    </span>
+                                </div>
+
+                                <div class="relative rounded-xl overflow-hidden bg-carbon shadow-md group">
+                                    <div class="relative h-64 sm:h-80 md:h-96 w-full">
+                                        <img id="carousel-img-${key}" 
+                                             src="${data.photos[0].url}" 
+                                             onerror="this.src='https://placehold.co/1000x500/1E4D4F/FFFFFF?text=${encodeURIComponent(monthName + ' ' + year)}'"
+                                             alt="${data.parish}" 
+                                             class="w-full h-full object-cover transition-opacity duration-300">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-petroleo-dark/90 via-carbon/20 to-transparent"></div>
+                                        
+                                        <div class="absolute bottom-0 inset-x-0 p-4 sm:p-6 text-white">
+                                            <div class="flex items-center justify-between gap-4">
+                                                <p id="carousel-caption-${key}" class="text-sm sm:text-base font-light text-white leading-snug">
+                                                    ${data.photos[0].caption}
+                                                </p>
+                                                <span id="carousel-counter-${key}" class="text-xs font-bold bg-ambar text-carbon px-3 py-1 rounded-full flex-shrink-0 shadow">
+                                                    1 / ${data.photos.length}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" 
+                                            onclick="changeMonthSlide(${year}, ${mIdx}, -1)"
+                                            aria-label="Foto anterior"
+                                            class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-petroleo-dark/75 hover:bg-rosa text-white border border-ambar/70 flex items-center justify-center transition-all">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <button type="button" 
+                                            onclick="changeMonthSlide(${year}, ${mIdx}, 1)"
+                                            aria-label="Foto siguiente"
+                                            class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-petroleo-dark/75 hover:bg-rosa text-white border border-ambar/70 flex items-center justify-center transition-all">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    </div>
+                </div>
+                `;
+            });
+
+            root.innerHTML = html;
+        }
+
+        function toggleYearAccordion(year) {
+            const panel = document.getElementById(`year-panel-${year}`);
+            const btn = document.getElementById(`year-btn-${year}`);
+            const icon = document.getElementById(`year-icon-${year}`);
+            const parentCard = btn.parentElement;
+            const badgeIcon = btn.querySelector('span:first-child');
+            const isHidden = panel.classList.contains('hidden');
+
+            if (isHidden) {
+                panel.classList.remove('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+                parentCard.classList.remove('border-lienzo-borde');
+                parentCard.classList.add('border-petroleo');
+                btn.classList.remove('bg-white', 'hover:bg-lienzo-suave', 'text-petroleo-dark');
+                btn.classList.add('bg-petroleo', 'text-white');
+                badgeIcon.classList.remove('bg-petroleo/10', 'text-petroleo');
+                badgeIcon.classList.add('bg-rosa', 'text-white');
+                icon.classList.add('rotate-180', 'text-ambar-light');
+                icon.classList.remove('text-petroleo');
+            } else {
+                panel.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+                parentCard.classList.add('border-lienzo-borde');
+                parentCard.classList.remove('border-petroleo');
+                btn.classList.add('bg-white', 'hover:bg-lienzo-suave', 'text-petroleo-dark');
+                btn.classList.remove('bg-petroleo', 'text-white');
+                badgeIcon.classList.add('bg-petroleo/10', 'text-petroleo');
+                badgeIcon.classList.remove('bg-rosa', 'text-white');
+                icon.classList.remove('rotate-180', 'text-ambar-light');
+                icon.classList.add('text-petroleo');
+            }
+        }
+
+        function toggleMonthAccordion(year, monthIndex) {
+            const key = `${year}-${monthIndex}`;
+            const panel = document.getElementById(`month-panel-${key}`);
+            const btn = document.getElementById(`month-btn-${key}`);
+            const icon = document.getElementById(`month-icon-${key}`);
+            const parentCard = btn.parentElement;
+            const dot = btn.querySelector('span:first-child');
+            const subtitle = btn.querySelector('span:nth-child(3)');
+            const isHidden = panel.classList.contains('hidden');
+
+            if (isHidden) {
+                panel.classList.remove('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+                parentCard.classList.remove('border-lienzo-borde');
+                parentCard.classList.add('border-rosa', 'shadow-sm');
+                btn.classList.remove('hover:bg-lienzo-suave', 'text-petroleo-dark');
+                btn.classList.add('bg-rosa', 'text-white');
+                dot.classList.remove('bg-rosa');
+                dot.classList.add('bg-ambar-light');
+                if (subtitle) {
+                    subtitle.classList.remove('text-stone-500');
+                    subtitle.classList.add('text-white/90');
+                }
+                icon.classList.add('rotate-180', 'text-white');
+                icon.classList.remove('text-petroleo');
+            } else {
+                panel.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+                parentCard.classList.add('border-lienzo-borde');
+                parentCard.classList.remove('border-rosa', 'shadow-sm');
+                btn.classList.add('hover:bg-lienzo-suave', 'text-petroleo-dark');
+                btn.classList.remove('bg-rosa', 'text-white');
+                dot.classList.add('bg-rosa');
+                dot.classList.remove('bg-ambar-light');
+                if (subtitle) {
+                    subtitle.classList.add('text-stone-500');
+                    subtitle.classList.remove('text-white/90');
+                }
+                icon.classList.remove('rotate-180', 'text-white');
+                icon.classList.add('text-petroleo');
+            }
+        }
+
+        function changeMonthSlide(year, monthIndex, delta) {
+            const key = `${year}-${monthIndex}`;
+            const data = getMonthData(year, monthIndex);
+            const total = data.photos.length;
+            monthCarouselState[key] = (monthCarouselState[key] + delta + total) % total;
+            const currentIdx = monthCarouselState[key];
+            const photo = data.photos[currentIdx];
+
+            const imgEl = document.getElementById(`carousel-img-${key}`);
+            const capEl = document.getElementById(`carousel-caption-${key}`);
+            const cntEl = document.getElementById(`carousel-counter-${key}`);
+
+            imgEl.style.opacity = '0.4';
+            setTimeout(() => {
+                imgEl.src = photo.url;
+                capEl.textContent = photo.caption;
+                cntEl.textContent = `${currentIdx + 1} / ${total}`;
+                imgEl.style.opacity = '1';
+            }, 150);
+        }
+
+        renderNestedAccordion();
+
+        // -------------------------------------------------------------------
+        // 4. MODALES DE ARTÍCULOS Y DIAPOSITIVAS HERO
+        // -------------------------------------------------------------------
+        
+        // -------------------------------------------------------------------
+        // 5. BOTÓN 'VER MÁS RECURSOS' Y NOTIFICACIÓN TOAST
+        // -------------------------------------------------------------------
+        function toggleResources() {
+            const panel = document.getElementById('extra-resources-panel');
+            const btnText = document.getElementById('toggle-resources-text');
+            const isHidden = panel.classList.contains('hidden');
+
+            if (isHidden) {
+                panel.classList.remove('hidden');
+                btnText.textContent = 'Ocultar recursos adicionales';
+                panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                panel.classList.add('hidden');
+                btnText.textContent = 'Ver más recursos';
+            }
+        }
+
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3500);
+        }
+
+        // -------------------------------------------------------------------
+        // 6. REGISTRO JUAN DIEGUINO (GOOGLE SHEETS + CERTIFICADO CANVAS PNG)
+        // -------------------------------------------------------------------
+        // URL oficial de la aplicación web desplegada en Google Apps Script
+        // conectada a la hoja de cálculo de la Comisión de Animación Guadalupana.
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwle38Ae2vbQJi8x0kGpQEgJzdo5IWq4fZr5LOD0fm3iur3GNbmuDthcADSWqISiBV9dQ/exec";
+
+        let lastRegisteredName = "Juan_Dieguino_Tulancingo";
+
+        // Dibuja una rosa estilizada geométrica (como las del logotipo oficial) en el Canvas
+        function drawLogoRose(ctx, cx, cy, size, color) {
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(Math.PI / 4);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2.4;
+
+            const steps = [1, 0.72, 0.45, 0.22];
+            steps.forEach((scale, idx) => {
+                ctx.save();
+                ctx.rotate(idx * 0.14);
+                const s = size * scale;
+                ctx.strokeRect(-s / 2, -s / 2, s, s);
+                ctx.restore();
+            });
+            ctx.restore();
+        }
+
+        // Carga el logotipo oficial (logo.png) con respaldo vectorial si no está disponible
+        let cachedLogoImg = null;
+        function loadOfficialLogo() {
+            return new Promise((resolve) => {
+                if (cachedLogoImg && cachedLogoImg.complete && cachedLogoImg.naturalWidth > 0) {
+                    resolve(cachedLogoImg);
+                    return;
+                }
+                const img = new Image();
+                img.onload = () => {
+                    cachedLogoImg = img;
+                    resolve(img);
+                };
+                img.onerror = () => {
+                    resolve(null);
+                };
+                img.src = "logo.png";
+            });
+        }
+
+        function drawGuadalupanaEmblem(ctx, cx, cy, scale, logoImg) {
+            ctx.save();
+            ctx.translate(cx, cy);
+
+            if (logoImg) {
+                const size = 155 * scale;
+                ctx.beginPath();
+                ctx.arc(0, 0, (size / 2) + 6, 0, Math.PI * 2);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.strokeStyle = "#F3921B";
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+
+                ctx.drawImage(logoImg, -size / 2, -size / 2, size, size);
+                ctx.restore();
+                return;
+            }
+
+            // Respaldo vectorial en caso de que logo.png no esté disponible
+            ctx.scale(scale, scale);
+            ctx.beginPath();
+            ctx.arc(0, 0, 76, 0, Math.PI * 2);
+            ctx.strokeStyle = "#1E4D4F";
+            ctx.lineWidth = 2.2;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.ellipse(6, -2, 42, 54, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = "#E62886";
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([6, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            const rayAngles = [-2.5, -2.1, -1.7, -1.3, -0.9, -0.5, -0.1, 0.3, 2.8];
+            ctx.strokeStyle = "#F3921B";
+            ctx.lineWidth = 3;
+            ctx.lineCap = "round";
+            rayAngles.forEach(ang => {
+                ctx.beginPath();
+                ctx.moveTo(6 + Math.cos(ang) * 26, -2 + Math.sin(ang) * 32);
+                ctx.lineTo(6 + Math.cos(ang) * 44, -2 + Math.sin(ang) * 52);
+                ctx.stroke();
+            });
+
+            ctx.beginPath();
+            ctx.moveTo(6, -38);
+            ctx.bezierCurveTo(-14, -38, -22, -16, -22, 12);
+            ctx.lineTo(-22, 46);
+            ctx.lineTo(34, 46);
+            ctx.lineTo(34, 12);
+            ctx.bezierCurveTo(34, -16, 26, -38, 6, -38);
+            ctx.closePath();
+            ctx.fillStyle = "#FCFBF7";
+            ctx.fill();
+            ctx.strokeStyle = "#1E4D4F";
+            ctx.lineWidth = 3.5;
+            ctx.stroke();
+
+            ctx.lineCap = "butt";
+            ctx.strokeStyle = "#E62886";
+            ctx.lineWidth = 15;
+            ctx.beginPath();
+            ctx.moveTo(-34, -24);
+            ctx.lineTo(-34, 56);
+            ctx.moveTo(-56, -2);
+            ctx.lineTo(-12, -2);
+            ctx.stroke();
+
+            ctx.strokeStyle = "#1A1A1A";
+            ctx.lineWidth = 6.5;
+            ctx.beginPath();
+            ctx.moveTo(-34, -20);
+            ctx.lineTo(-34, 52);
+            ctx.moveTo(-52, -2);
+            ctx.lineTo(-16, -2);
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        // Dibuja el certificado completo en el Canvas (1600x1130 px)
+        function renderCertificateToCanvas(canvas, { nombre, parroquia, fechaTexto, folio }, logoImg) {
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width;  // 1600
+            const H = canvas.height; // 1130
+
+            // 1. Fondo blanco marfil solemne con degradado radial sutil
+            const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 120, W / 2, H / 2, W * 0.65);
+            bgGrad.addColorStop(0, "#FFFFFF");
+            bgGrad.addColorStop(1, "#F9F6EE");
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, W, H);
+
+            // 2. Marca de agua central muy tenue
+            ctx.save();
+            ctx.globalAlpha = 0.06;
+            drawGuadalupanaEmblem(ctx, W / 2, H / 2 + 30, 4.2, logoImg);
+            ctx.restore();
+
+            // 3. Marcos dobles institucionales (Verde Petróleo #1E4D4F y Naranja Solar #F3921B)
+            ctx.strokeStyle = "#1E4D4F";
+            ctx.lineWidth = 14;
+            ctx.strokeRect(36, 36, W - 72, H - 72);
+
+            ctx.strokeStyle = "#F3921B";
+            ctx.lineWidth = 4;
+            ctx.strokeRect(56, 56, W - 112, H - 112);
+
+            ctx.strokeStyle = "#1E4D4F";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(66, 66, W - 132, H - 132);
+
+            // 4. Esquinas ornamentales con Rosas en Rosa Mexicano (#E62886)
+            const corners = [
+                [98, 98],
+                [W - 98, 98],
+                [98, H - 98],
+                [W - 98, H - 98]
+            ];
+            corners.forEach(([cx, cy]) => {
+                ctx.fillStyle = "#FCFBF7";
+                ctx.beginPath();
+                ctx.arc(cx, cy, 38, 0, Math.PI * 2);
+                ctx.fill();
+                drawLogoRose(ctx, cx, cy, 42, "#E62886");
+            });
+
+            // 5. Emblema oficial superior centrado (logo.png)
+            drawGuadalupanaEmblem(ctx, W / 2, 185, 1.15, logoImg);
+
+            // 6. Encabezado Institucional
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#1E4D4F";
+            ctx.font = "700 30px Cinzel, Georgia, serif";
+            ctx.fillText("ARQUIDIÓCESIS DE TULANCINGO", W / 2, 315);
+
+            ctx.fillStyle = "#E62886";
+            ctx.font = "700 22px Inter, Arial, sans-serif";
+            ctx.fillText("Novena Intercontinental", W / 2, 350);
+
+            // Línea divisoria degradada
+            const lineGrad = ctx.createLinearGradient(W / 2 - 360, 0, W / 2 + 360, 0);
+            lineGrad.addColorStop(0, "transparent");
+            lineGrad.addColorStop(0.25, "#1E4D4F");
+            lineGrad.addColorStop(0.5, "#E62886");
+            lineGrad.addColorStop(0.75, "#F3921B");
+            lineGrad.addColorStop(1, "transparent");
+            ctx.fillStyle = lineGrad;
+            ctx.fillRect(W / 2 - 360, 368, 720, 4);
+
+            // 7. Título Principal del Certificado
+            ctx.fillStyle = "#153A3C";
+            ctx.font = "700 54px Cinzel, Georgia, serif";
+            ctx.fillText("CERTIFICADO", W / 2, 438);
+
+            ctx.fillStyle = "#57534E";
+            ctx.font = "500 21px Inter, Arial, sans-serif";
+            ctx.fillText("SE OTORGA LA CONSTANCIA DE PARTICIPACIÓN A:", W / 2, 488);
+
+            // 8. Nombre del Participante
+            const displayName = (nombre || "Nombre del Participante").trim();
+            let nameFontSize = 62;
+            if (displayName.length > 34) nameFontSize = 46;
+            else if (displayName.length > 26) nameFontSize = 54;
+
+            ctx.fillStyle = "#1E4D4F";
+            ctx.font = `italic 600 ${nameFontSize}px "Cormorant Garamond", Georgia, serif`;
+            ctx.fillText(displayName, W / 2, 568);
+
+            // Línea dorada bajo el nombre
+            ctx.strokeStyle = "#F3921B";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(W / 2 - 430, 588);
+            ctx.lineTo(W / 2 + 430, 588);
+            ctx.stroke();
+
+            // 9. Parroquia de procedencia
+            const displayParish = (parroquia || "Parroquia de ").trim();
+            ctx.fillStyle = "#E62886";
+            ctx.font = "700 24px Inter, Arial, sans-serif";
+            ctx.fillText(displayParish.toUpperCase(), W / 2, 632);
+
+            // 10. Texto Oficial de Certificación
+            const bodyText = "texto.";
+            
+            ctx.fillStyle = "#292524";
+            ctx.font = "400 22px Inter, Arial, sans-serif";
+            wrapCanvasText(ctx, bodyText, W / 2, 686, 1180, 34);
+
+            // 11. Cita Guadalupana breve
+            ctx.fillStyle = "#1E4D4F";
+            ctx.font = 'italic 600 24px "Cormorant Garamond", Georgia, serif';
+            ctx.fillText("“Santa María de Guadalupe, Madre del Redentor — ¿No estoy yo aquí que soy tu Madre?”", W / 2, 830);
+
+            // 12. Fecha de expedición y Folio
+            ctx.fillStyle = "#57534E";
+            ctx.font = "600 19px Inter, Arial, sans-serif";
+            ctx.fillText(`Expedido en Tulancingo de Bravo, Hidalgo, a ${fechaTexto}  •  Folio Oficial: ${folio}`, W / 2, 878);
+
+
+            
+            // 13. Líneas de Firma Institucional
+            
+        
+        }
+
+        // Genera la vista previa y sincroniza imagen/canvas sin fallos por CORS local
+        async function generateCertificateCanvas(certData) {
+            const logoImg = await loadOfficialLogo();
+            const canvas = document.getElementById('certificate-canvas');
+            const previewImg = document.getElementById('certificate-preview-img');
+
+            renderCertificateToCanvas(canvas, certData, logoImg);
+
+            try {
+                previewImg.src = canvas.toDataURL('image/png');
+                previewImg.classList.remove('hidden');
+                canvas.classList.add('hidden');
+            } catch (securityErr) {
+                // Si se abre con file:/// y logo.png bloquea toDataURL(), mostramos el Canvas directamente
+                previewImg.classList.add('hidden');
+                canvas.classList.remove('hidden');
+            }
+        }
+
+        // Utilidad para envolver texto multilínea centrado en Canvas
+        function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
+            const words = text.split(' ');
+            let line = '';
+            let currentY = y;
+
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n] + ' ';
+                const metrics = ctx.measureText(testLine);
+                if (metrics.width > maxWidth && n > 0) {
+                    ctx.fillText(line.trim(), x, currentY);
+                    line = words[n] + ' ';
+                    currentY += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line.trim(), x, currentY);
+        }
+
+        // Formatear fecha actual en español
+        function getFormattedSpanishDate() {
+            const months = [
+                "enero", "febrero", "marzo", "abril", "mayo", "junio",
+                "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+            ];
+            const now = new Date();
+            return `${now.getDate()} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
+        }
+
+        // Renderizar certificado de muestra inicial
+        window.addEventListener('DOMContentLoaded', () => {
+            generateCertificateCanvas({
+                nombre: "Tu Nombre Completo Aquí",
+                parroquia: "Parroquia de la Arquidiócesis de Tulancingo",
+                fechaTexto: getFormattedSpanishDate(),
+                folio: "JD-2026-MUESTRA"
+            });
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                generateCertificateCanvas({
+                    nombre: "Tu Nombre Completo Aquí",
+                    parroquia: "Parroquia de la Arquidiócesis de Tulancingo",
+                    fechaTexto: getFormattedSpanishDate(),
+                    folio: "JD-2026-MUESTRA"
+                });
+            }, 250);
+        });
+
+        // Manejo del envío del formulario y conexión con Google Sheets
+        document.getElementById('juandieguino-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById('jd-nombre').value.trim();
+            const parroquia = document.getElementById('jd-parroquia').value.trim();
+            const correo = document.getElementById('jd-correo').value.trim();
+            const telefono = document.getElementById('jd-telefono').value.trim();
+
+            if (!nombre || !parroquia || !correo || !telefono) return;
+
+            const submitBtn = document.getElementById('jd-submit-btn');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Procesando registro...';
+
+            const randomCode = Math.floor(1000 + Math.random() * 9000);
+            const folio = `JD-2026-${randomCode}`;
+            const fechaTexto = getFormattedSpanishDate();
+
+            const datos = {
+                folio,
+                fecha: new Date().toISOString(),
+                nombre,
+                parroquia,
+                correo,
+                telefono,
+                arquidiocesis: "Arquidiócesis de Tulancingo"
+            };
+
+            const banner = document.getElementById('jd-status-banner');
+            const bannerIcon = document.getElementById('jd-status-icon');
+            const bannerTitle = document.getElementById('jd-status-title');
+            const bannerDesc = document.getElementById('jd-status-desc');
+
+            if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.trim() !== "") {
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8'
+                        },
+                        body: JSON.stringify(datos)
+                    });
+
+                    banner.className = "mb-4 p-4 rounded-xl border border-petroleo/30 bg-petroleo/10 text-petroleo-dark flex items-start space-x-3 shadow-sm";
+                    bannerIcon.className = "fas fa-check-circle text-petroleo text-lg mt-0.5";
+                    bannerTitle.textContent = "¡Registro guardado en Google Sheets y certificado generado!";
+                    bannerDesc.textContent = `Los datos de ${nombre} se enviaron correctamente a la bitácora diocesana con el folio ${folio}.`;
+                } catch (err) {
+                    banner.className = "mb-4 p-4 rounded-xl border border-ambar bg-ambar/15 text-petroleo-dark flex items-start space-x-3 shadow-sm";
+                    bannerIcon.className = "fas fa-exclamation-triangle text-ambar-dark text-lg mt-0.5";
+                    bannerTitle.textContent = "Certificado generado (Error de red al conectar con Google Sheets)";
+                    bannerDesc.textContent = "Tu certificado oficial está listo para descargar, aunque no se pudo confirmar el envío remoto.";
+                }
+            } else {
+                banner.className = "mb-4 p-4 rounded-xl border border-ambar bg-ambar/15 text-petroleo-dark flex items-start space-x-3 shadow-sm";
+                bannerIcon.className = "fas fa-certificate text-rosa text-lg mt-0.5";
+                bannerTitle.textContent = "¡Certificado de Juan Dieguino generado con éxito!";
+                bannerDesc.textContent = `Folio ${folio} expedido para ${nombre}.`;
+            }
+
+            await generateCertificateCanvas({
+                nombre,
+                parroquia,
+                fechaTexto,
+                folio
+            });
+
+            document.getElementById('jd-folio-badge').textContent = `Folio: ${folio}`;
+            lastRegisteredName = nombre.replace(/\s+/g, '_');
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+
+            showToast(`¡Certificado expedido para ${nombre}!`);
+            document.getElementById('certificate-display-wrapper').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        // Descargar la imagen PNG del certificado (con respaldo si se ejecuta desde file:///)
+        function downloadCertificatePNG() {
+            const canvas = document.getElementById('certificate-canvas');
+            try {
+                const dataUrl = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = `Certificado_Juan_Dieguino_${lastRegisteredName}.png`;
+                link.href = dataUrl;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Descargando Certificado de Juan Dieguino (PNG)...');
+            } catch (e) {
+                // Respaldo para protocolo local file:/// cuando logo.png bloquea la exportación
+                const exportCanvas = document.createElement('canvas');
+                exportCanvas.width = 1600;
+                exportCanvas.height = 1130;
+
+                const nombre = document.getElementById('jd-nombre').value.trim() || "Tu Nombre Completo Aquí";
+                const parroquia = document.getElementById('jd-parroquia').value.trim() || "Parroquia de la Arquidiócesis de Tulancingo";
+                const folio = document.getElementById('jd-folio-badge').textContent.replace('Folio: ', '');
+
+                renderCertificateToCanvas(exportCanvas, {
+                    nombre,
+                    parroquia,
+                    fechaTexto: getFormattedSpanishDate(),
+                    folio
+                }, null);
+
+                const link = document.createElement('a');
+                link.download = `Certificado_Juan_Dieguino_${lastRegisteredName}.png`;
+                link.href = exportCanvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Certificado PNG descargado correctamente.');
+            }
+        }
+
+        // Limpiar formulario para registrar a otro participante
+        function resetJuanDieguinoForm() {
+            document.getElementById('juandieguino-form').reset();
+            document.getElementById('jd-status-banner').classList.add('hidden');
+            document.getElementById('jd-folio-badge').textContent = 'Folio: JD-2026-MUESTRA';
+            lastRegisteredName = "Juan_Dieguino_Tulancingo";
+
+            generateCertificateCanvas({
+                nombre: "Tu Nombre Completo Aquí",
+                parroquia: "Parroquia de la Arquidiócesis de Tulancingo",
+                fechaTexto: getFormattedSpanishDate(),
+                folio: "JD-2026-MUESTRA"
+            });
+
+            document.getElementById('jd-nombre').focus();
+            showToast('Formulario listo para un nuevo registro.');
+        }
+    </script>
+</body>
+</html>
